@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color: powderblue;}
+h1 {color:tomato;}
+p {color: red;}
+</style>
+</head>
+
+<body>
+
+<h1>Play My Game!</h1>
+
+<p id="mine">Press on the button below</p>
+
+<script src="my bike project.js"></script>
+
+<button onclick="document.location='my bike project'">My game</button>
+
+<script>
+
+function setup() {
+    createCanvas(400, 400);
+  }
+  
+  //setting up my dots array
+  var dots = [];
+  
+  //setting up my sun
+  var sunSize = 130;
+  
+  //making sure my animations reset
+  function mouseReleased() {
+    sunSize = 130;
+    dots = [];
+    }
+  
+  //my function to change ellipses different colors
+  var chooseColor = function() {
+    var colors = ["red", "green", "yellow", "purple", "pink", "orange","blue"];
+    var randomColors = floor(random(0, colors.length))
+    return colors[randomColors];
+      }
+  
+  //my functinon to generate random dots
+  var createDots = function() {
+    var xPosition = random(0,400);
+    var yPosition = random(0,400);
+    var randomColor = chooseColor();
+    var dot = {x: xPosition, y: yPosition, color: randomColor}
+    dots.push(dot) 
+  }
+  
+  //creating my cute bike design
+  var myCuteBike = function() {
+    background(255, 204, 100);
+    line(420, 205, 0, 205);
+    fill(255, 204, 100);
+    //wheel1
+    ellipse(200, 200, 40, 40);
+    //wheel2
+    ellipse(100, 200, 40, 40);
+    //bikepart
+    triangle(140, 185, 150, 200, 110, 195);
+    //bikeframe
+    line(150, 200, 180, 170);
+    //steering tube
+    line(205, 205, 172, 155);
+    //petalsi
+    line(150, 200, 155, 210);
+    //petalsii
+    line(160, 210, 145, 210);
+    //seatpost
+    line(150, 200, 130, 170);
+    //handlebar
+    line(158, 155, 172, 155);
+    //seat
+    line(122, 170, 138, 170);
+    fill(70);
+    textSize(11)
+    text("press on the bike",55, 150);
+  }
+  
+  //draw function
+  function draw() {
+    myCuteBike();
+  
+  // when user presses bike, my 2nd draw layer is revealed
+    if(mouseIsPressed && mouseX > 80 && mouseX < 235 && mouseY > 135 && mouseY <   220) {
+       fill(40);
+       textSize(17);
+       fill("purple");
+       fill("blue");
+       ellipse(60, 50, 10, 10);
+       fill("blue");
+       ellipse(280, 380, 10, 10);
+       fill("pink");
+       ellipse(350, 160, 10, 10);
+       fill("pink");
+       ellipse(40, 240, 10, 10);
+       fill("orange");
+       fill("red");
+       ellipse(380, 260, 10, 10);
+       fill("purple");
+       ellipse(160, 100, 10, 10);
+       fill("green");
+       ellipse(180, 300, 10, 10);
+       fill("yellow");
+       ellipse(380, 50, sunSize, sunSize);
+       sunSize += .5;
+    
+  //going through my dots object to generate my colorful dots 
+    for (var i = 0; i < dots.length; i++) {
+      var dot = dots[i];
+      fill(dot.color);
+      ellipse(dot.x, dot.y, 10, 10);
+      fill(dot.color);
+      text("thanks for viewing my project!",155, 330);
+      }
+    }
+  }
+  //making my dots appear every half second
+  setInterval(createDots, 500);
+
+  </script>
+
+</body>
+</html>
